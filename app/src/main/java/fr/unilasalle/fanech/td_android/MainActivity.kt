@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import fr.unilasalle.fanech.td_android.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -36,6 +38,16 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
+
+        // liste d'entiers de 0 à 30 à afficher dans une ListView
+        val listInt = ArrayList<Int>()
+        for (i in 0..30){
+            listInt.add(i)
+        }
+
+        val recyclerView = binding.listInt
+        recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        recyclerView.adapter = NumbersAdapter(listInt)
 
     }
 }
