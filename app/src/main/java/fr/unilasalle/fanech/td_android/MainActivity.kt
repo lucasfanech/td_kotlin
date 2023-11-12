@@ -49,5 +49,16 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         recyclerView.adapter = NumbersAdapter(listInt)
 
+
+        // liste de contacts à afficher dans une RecyclerView
+        val listContact = ArrayList<Contact>()
+        listContact.add(Contact("Fanech", "Lucas", "0606060606", 21, 1))
+        listContact.add(Contact("Saleh", "Aladin", "0606060606", 22, 0))
+        listContact.add(Contact("Desnoyers", "Jonathan", "0707070707", 30, 1))
+
+        val recyclerViewContact = binding.listContact
+        recyclerViewContact.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        recyclerViewContact.adapter = ContactAdapter(listContact)
+
     }
 }
