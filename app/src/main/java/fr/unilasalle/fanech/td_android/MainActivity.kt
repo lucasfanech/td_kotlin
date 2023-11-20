@@ -1,7 +1,10 @@
 package fr.unilasalle.fanech.td_android
 
+import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -42,6 +45,13 @@ class MainActivity : AppCompatActivity() {
         val btnSend = binding.btnSend
         var counter = 0
 
+        val btnAddUser = binding.btnAddUser
+
+        btnAddUser.setOnClickListener {
+            showAddUserDialog()
+        }
+
+
         button.setOnClickListener(){
             counter++
             binding.newText.text = counter.toString()
@@ -75,26 +85,18 @@ class MainActivity : AppCompatActivity() {
 
 
         // génerer une liste de 3 utilisateurs en db
-        val dateformat = SimpleDateFormat("dd-MM-yyyy")
-        val strdate = "02-04-2001"
-        val newdate: Date = dateformat.parse(strdate)
-
-        GlobalScope.launch(Dispatchers.IO) {
-            val user1 = User(0, "Dupont", "Jean", newdate, "0600000000", 0)
-            val user2 = User(0, "Dupont", "Jean", newdate, "0600000000", 0)
-            val user3 = User(0, "Dupont", "Jean", newdate, "0600000000", 0)
-            insertUser(user1)
-            insertUser(user2)
-            insertUser(user3)
-        }
-
-        // get all Users and print in console
-        GlobalScope.launch(Dispatchers.IO) {
-            val users = db.userDao().getAllUsers()
-            users.forEach {
-                println(it)
-            }
-        }
+//        val dateformat = SimpleDateFormat("dd-MM-yyyy")
+//        val strdate = "02-04-2001"
+//        val newdate: Date = dateformat.parse(strdate)
+//
+//        GlobalScope.launch(Dispatchers.IO) {
+//            val user1 = User(0, "Dupont", "Jean", newdate, "0600000000", 0)
+//            val user2 = User(0, "Dupont", "Jean", newdate, "0600000000", 0)
+//            val user3 = User(0, "Dupont", "Jean", newdate, "0600000000", 0)
+//            insertUser(user1)
+//            insertUser(user2)
+//            insertUser(user3)
+//        }
 
 
         // Liste de contacts à afficher dans une RecyclerView
@@ -142,9 +144,48 @@ class MainActivity : AppCompatActivity() {
         if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)) {
             age--
         }
-        // print in console
-        println("age: $age")
+
         return age
+    }
+
+    // Ajouter cette fonction pour afficher la boîte de dialogue pour ajouter un utilisateur
+    @SuppressLint("MissingInflatedId")
+    private fun showAddUserDialog() {
+        val dialog = AlertDialog.Builder(this)
+        val dialogView = layoutInflater.inflate(R.layout.dialog_add_user, null)
+        dialog.setView(dialogView)
+        dialog.setTitle("Ajouter un nouvel utilisateur")
+
+        val etName = dialogView.findViewById<EditText>(R.id.etName)
+        val etFirstName = dialogView.findViewById<EditText>(R.id.etFirstName)
+        val etBirthDate = dialogView.findViewById<EditText>(R.id.etBirthDate)
+        val etPhoneNumber = dialogView.findViewById<EditText>(R.id.etPhoneNumber)
+        val etGender = dialogView.findViewById<EditText>(R.id.etGender)
+
+        dialog.setPositiveButton("Ajouter") { _, _ ->
+            val name = etName.text.toString()
+            val firstName = etFirstName.text.toString()
+            val birthDate = etBirthDate.text.toString()
+            val phoneNumber = etPhoneNumber.text.toString()
+            val gender = etGender.text.toString().toIntOrNull()
+
+            if (name.isNotEmpty() && firstName.isNotEmpty() && birthDate.isNotEmpty() && phoneNumber.isNotEmpty() && gender != null) {
+                val newUser = User(
+                    name = name,
+                    firstname = firstName,
+                    birthDate = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).parse(birthDate),
+                    phoneNumber = phoneNumber,
+                    gender = gender
+                )
+
+                userViewModel.insertUser(newUser)
+            } else {
+                Toast.makeText(this, "Veuillez remplir tous les champs correctement", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        dialog.setNegativeButton("Annuler", null)
+        dialog.show()
     }
 
 }

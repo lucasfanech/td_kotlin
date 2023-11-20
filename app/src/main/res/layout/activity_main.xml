@@ -43,7 +43,7 @@
         android:id="@+id/btnSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="12dp"
         android:text="Envoyer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,18 +53,33 @@
         android:id="@+id/textToShow"
         android:layout_width="343dp"
         android:layout_height="50dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="24dp"
         android:hint="Saisir votre donnée"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnIncrement" />
 
+    <Button
+        android:id="@+id/btnAddUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Ajouter un utilisateur"
+        app:layout_constraintBottom_toTopOf="@+id/listInt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSend"
+        app:layout_constraintVertical_bias="0.227" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listInt"
-        android:layout_width="355dp"
-        android:layout_height="96dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="353dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="108dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSend" />
 

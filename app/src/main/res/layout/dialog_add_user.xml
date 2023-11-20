@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Nom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <EditText
+        android:id="@+id/etFirstName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Prénom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etName"
+        android:layout_marginTop="8dp"/>
+
+    <EditText
+        android:id="@+id/etBirthDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Date de naissance"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etFirstName"
+        android:layout_marginTop="8dp"/>
+
+    <EditText
+        android:id="@+id/etPhoneNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Numéro de téléphone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etBirthDate"
+        android:layout_marginTop="8dp"/>
+
+    <EditText
+        android:id="@+id/etGender"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Genre"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPhoneNumber"
+        android:layout_marginTop="8dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
