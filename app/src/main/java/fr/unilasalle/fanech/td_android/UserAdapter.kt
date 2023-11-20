@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ContactAdapter(private var listContact : ArrayList<Contact>) : RecyclerView.Adapter<ContactAdapter.ViewHolder>(){
+class UserAdapter(private var listUser : ArrayList<User>) : RecyclerView.Adapter<UserAdapter.ViewHolder>(){
 
 
 
@@ -15,33 +15,33 @@ class ContactAdapter(private var listContact : ArrayList<Contact>) : RecyclerVie
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ContactAdapter.ViewHolder, position: Int) {
-        val item = listContact[position]
+    override fun onBindViewHolder(holder: UserAdapter.ViewHolder, position: Int) {
+        val item = listUser[position]
         holder.bind(item)
     }
 
     override fun getItemCount(): Int {
-        return listContact.size
+        return listUser.size
     }
 
-    fun updateList(newList: List<Contact>) {
-        listContact = newList as ArrayList<Contact>
+    fun updateList(newList: List<User>) {
+        listUser = newList as ArrayList<User>
         notifyDataSetChanged()
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val textViewContactFirstName: TextView = itemView.findViewById(R.id.textViewFirstname)
-        val textViewContactName: TextView = itemView.findViewById(R.id.textViewName)
-        val textViewContactPhone: TextView = itemView.findViewById(R.id.textViewPhone)
-        val textViewContactAge: TextView = itemView.findViewById(R.id.textViewAge)
+        val textViewUserFirstName: TextView = itemView.findViewById(R.id.textViewFirstname)
+        val textViewUserName: TextView = itemView.findViewById(R.id.textViewName)
+        val textViewUserPhone: TextView = itemView.findViewById(R.id.textViewPhone)
+        val textViewUserAge: TextView = itemView.findViewById(R.id.textViewAge)
 
         val background = itemView.findViewById<View>(R.id.itemContact)
 
-        fun bind(item: Contact) {
-            textViewContactFirstName.text = item.firstname.toString()
-            textViewContactName.text = item.name.toString()
-            textViewContactPhone.text = item.phone.toString()
-            textViewContactAge.text = item.age.toString()
+        fun bind(item: User) {
+            textViewUserFirstName.text = item.firstname.toString()
+            textViewUserName.text = item.name.toString()
+            textViewUserPhone.text = item.phoneNumber.toString()
+            textViewUserAge.text = item.birthDate.toString()
             if (item.gender == 0){
                 background.setBackgroundResource(R.color.purple_200)
             }
